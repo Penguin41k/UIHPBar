@@ -19,10 +19,10 @@ public class Bar : MonoBehaviour
             StopCoroutine(_changeValueJob);
         }
 
-        _changeValueJob = StartCoroutine(ÑhangeBarValue(targetValue));
+        _changeValueJob = StartCoroutine(ChangeBarValue(targetValue));
     }
 
-    private IEnumerator ÑhangeBarValue(float targetValue)
+    private IEnumerator ChangeBarValue(float targetValue)
     {
         while (_barSlider.value != targetValue)
         {
