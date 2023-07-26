@@ -2,51 +2,37 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent (typeof (Slider))]
+[RequireComponent(typeof(Slider))]
 public class Bar : MonoBehaviour
 {
-    [SerializeField] private Player statusController;
     [SerializeField] private float _valueChangeSpeed;
-    private Slider _barSlider;
-    private int _targetBarValue;
+    [SerializeField] private Slider _barSlider;
+
     private Coroutine _changeValueJob;
 
-    void Start()
+    public void StartChangeBarValue(int value, int maxValue)
     {
-        _barSlider = GetComponent<Slider>();
-        _barSlider.maxValue = statusController.MaxHP;
-        _barSlider.value = statusController.MaxHP;
-        _targetBarValue = statusController.MaxHP;
-    }
+        float targetValue=(float)value/maxValue;
 
-    void Update()
-    {
-        if (_targetBarValue != statusController.CurrentHP)
-        {
-            _targetBarValue = statusController.CurrentHP;
-            StartChangeHPBarVolum(_targetBarValue);
-        }
-    }
-
-    private void StartChangeHPBarVolum(int targetValum)
-    {
         if (_changeValueJob != null)
         {
-            StopCoroutine(_changeValueJob); 
+            StopCoroutine(_changeValueJob);
         }
 
-        _changeValueJob = StartCoroutine(ÑhangeHPBarValum(targetValum));
+        _changeValueJob = StartCoroutine(ÑhangeBarValue(targetValue));
     }
 
-
-    private IEnumerator ÑhangeHPBarValum(int targetValum)
+    private IEnumerator ÑhangeBarValue(float targetValue)
     {
-        while (_barSlider.value != targetValum)
+        while (_barSlider.value != targetValue)
         {
-            _barSlider.value = Mathf.MoveTowards(_barSlider.value, targetValum, _valueChangeSpeed * Time.deltaTime);
+            _barSlider.value = Mathf.MoveTowards(_barSlider.value, targetValue, _valueChangeSpeed * Time.deltaTime);
             yield return null;
         }
     }
 
-
+    private void Start()
+    {
+        _barSlider = GetComponent<Slider>();
+    }
 }

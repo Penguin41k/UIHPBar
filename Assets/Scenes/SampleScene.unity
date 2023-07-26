@@ -441,6 +441,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 100
+  _hpChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 582977939}
+        m_TargetAssemblyTypeName: Bar, Assembly-CSharp
+        m_MethodName: StartChangeBarValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &429534837
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,8 +947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0e74b56c667224dabb53d28126e0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusController: {fileID: 419372064}
-  _valueChangeSpeed: 2
+  _valueChangeSpeed: 0.1
+  _barSlider: {fileID: 0}
 --- !u!1 &1039780076
 GameObject:
   m_ObjectHideFlags: 0
