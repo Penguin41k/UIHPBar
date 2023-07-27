@@ -10,6 +10,11 @@ public class Bar : MonoBehaviour
 
     private Coroutine _changeValueJob;
 
+    private void Start()
+    {
+        _barSlider = GetComponent<Slider>();
+    }
+
     public void StartChangeBarValue(int value, int maxValue)
     {
         float targetValue=(float)value/maxValue;
@@ -29,10 +34,5 @@ public class Bar : MonoBehaviour
             _barSlider.value = Mathf.MoveTowards(_barSlider.value, targetValue, _valueChangeSpeed * Time.deltaTime);
             yield return null;
         }
-    }
-
-    private void Start()
-    {
-        _barSlider = GetComponent<Slider>();
     }
 }

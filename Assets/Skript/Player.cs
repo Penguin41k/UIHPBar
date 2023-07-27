@@ -8,6 +8,11 @@ public class Player : MonoBehaviour
 
     private int _currentHP;
 
+    private void Start()
+    {
+        _currentHP = _maxHP;
+    }
+
     public void Heal(int healQuantity)
     {
         _currentHP += healQuantity;
@@ -30,10 +35,5 @@ public class Player : MonoBehaviour
         }
 
         _hpChanged?.Invoke(_currentHP, _maxHP);
-    }
-
-    private void Start()
-    {
-        _currentHP = _maxHP;
     }
 }
