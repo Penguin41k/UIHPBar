@@ -6,9 +6,21 @@ using UnityEngine.UI;
 public class Bar : MonoBehaviour
 {
     [SerializeField] private float _valueChangeSpeed;
-    [SerializeField] private Slider _barSlider;
+    [SerializeField] private Player _player ;
+
+    private Slider _barSlider;
 
     private Coroutine _changeValueJob;
+
+    private void OnEnable()
+    {
+        _player.HPChanged += StartChangeBarValue;
+    }
+
+    private void OnDisable()
+    {
+        _player.HPChanged -= StartChangeBarValue;
+    }
 
     private void Start()
     {

@@ -1,39 +1,32 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
-    [SerializeField] private UnityEvent<int, int> _hpChanged;
 
     private int _currentHP;
+
+    public event UnityAction<int, int> HPChanged;
 
     private void Start()
     {
         _currentHP = _maxHP;
+        _currentHP = Mathf.Clamp(_currentHP, 0, _maxHP);
     }
 
     public void Heal(int healQuantity)
     {
         _currentHP += healQuantity;
-
-        if (_currentHP > _maxHP)
-        {
-            _currentHP = _maxHP;
-        }
-
-        _hpChanged?.Invoke(_currentHP, _maxHP);
+        _currentHP = Math.Clamp(_currentHP, 0, _maxHP);
+        HPChanged?.Invoke(_currentHP, _maxHP);
     }
 
     public void TakeDamage(int damage)
     {
         _currentHP -= damage;
-
-        if (_currentHP < 0)
-        {
-            _currentHP = 0;
-        }
-
-        _hpChanged?.Invoke(_currentHP, _maxHP);
+        _currentHP = Math.Clamp(_currentHP, 0, _maxHP);
+        HPChanged?.Invoke(_currentHP, _maxHP);
     }
 }
