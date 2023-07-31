@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _currentHP = _maxHP;
-        _currentHP = Mathf.Clamp(_currentHP, 0, _maxHP);
     }
 
     public void Heal(int healQuantity)
